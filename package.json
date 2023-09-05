@@ -9,10 +9,21 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "bootstrap": "^5.3.1",
+    "ccxt": "^4.0.82",
+    "chart.js": "^4.4.0",
+    "chartjs-adapter-date-fns": "^3.0.0",
+    "date-fns": "^2.30.0",
     "eslint": "8.48.0",
     "eslint-config-next": "13.4.19",
     "next": "13.4.19",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-bootstrap": "^2.8.0",
+    "react-chartjs-2": "^5.2.0",
+    "react-dom": "18.2.0",
+    "react-select": "^5.7.4"
+  },
+  "devDependencies": {
+    "sass": "^1.66.1"
   }
 }

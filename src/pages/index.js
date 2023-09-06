@@ -6,9 +6,11 @@ import 'chartjs-adapter-date-fns';
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, LinearScale, PointElement, Tooltip, Legend, TimeScale, LineController, LineElement } from 'chart.js';
 
+// Registers the required ChartJS modules for rendering the line chart.
 ChartJS.register(LinearScale, PointElement, Tooltip, Legend, TimeScale, LineController, LineElement);
 
 export default function Page() {
+    // State variables for the application.
     const [cryptos, setCryptos] = useState([]);
     const [filteredCryptos, setFilteredCryptos] = useState([]);
     const [selectedCrypto, setSelectedCrypto] = useState(null);
@@ -21,6 +23,7 @@ export default function Page() {
     const [searchTimeout, setSearchTimeout] = useState(null);
     const [searchTerm, setSearchTerm] = useState('');
 
+    // Loads all cryptocurrencies from the Binance exchange.
     useEffect(() => {
         async function loadCryptos() {
             try {
@@ -36,6 +39,7 @@ export default function Page() {
         loadCryptos();
     }, []);
 
+    // Handles the search input change and performs input validation.
     const handleSearchChange = (e) => {
         const term = e.target.value;
 
@@ -48,7 +52,6 @@ export default function Page() {
                     setTimeout(() => {
                         const filtered = cryptos.filter(crypto => crypto.label.toLowerCase().includes(term.toLowerCase()));
                         setFilteredCryptos(filtered);
-                        // Log the searched term
                         logSearchedCrypto(term);
                     }, 1000)
                 );
@@ -62,16 +65,15 @@ export default function Page() {
         }
     };
 
+    // Triggers once a cryptocurrency is selected from the dropdown.
     const handleCryptoSelect = (selectedOption) => {
         setSelectedCrypto(selectedOption);
         setFilteredCryptos([]);
         setSearchTerm('');
-
-        // Log selected crypto
         logSelectedCrypto(selectedOption.label);
     };
 
-    // Loggers
+    // Logs searched/selected crypto term to the backend.
     function logSearchedCrypto(searchTerm) {
         fetch('http://localhost:3002/log/searched', {
             method: 'POST',
@@ -100,6 +102,7 @@ export default function Page() {
         .catch(error => console.error('Error logging selected crypto:', error));
     }
 
+    // Fetches and sets the chart data once a crypto is selected and/or the date range is changed.
     useEffect(() => {
         if (selectedCrypto) {
             async function fetchChartData() {
@@ -130,20 +133,22 @@ export default function Page() {
         }
     }, [selectedCrypto, dateRange]);
 
+    // Renders the main component UI.
     return (
         <Container className={styles.main}>
             <Row className={styles.row}>
                 <Col>
-                    {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}
+                    {errorMessage && <Alert className={styles.alertDanger} variant="danger">{errorMessage}</Alert>}
                     <InputGroup>
                         <FormControl
+                            className={styles.cryptoSearch}
                             placeholder="Search for a cryptocurrency"
                             value={searchTerm}
                             onChange={handleSearchChange}
                         />
                     </InputGroup>
                     {filteredCryptos.slice(0, 10).map(crypto => (
-                        <div key={crypto.value} onClick={() => handleCryptoSelect(crypto)}>
+                        <div key={crypto.value} className={styles.cryptoItem} onClick={() => handleCryptoSelect(crypto)}>
                             {crypto.label}
                         </div>
                     ))}
@@ -151,7 +156,7 @@ export default function Page() {
             </Row>
             <Row className={styles.row}>
                 <Col>
-                    <Form.Control as="select" value={dateRange} onChange={e => setDateRange(e.target.value)}>
+                    <Form.Control className={styles.dateSelect} as="select" value={dateRange} onChange={e => setDateRange(e.target.value)}>
                         <option value="1d">1 Day</option>
                         <option value="7d">7 Days</option>
                         <option value="30d">30 Days</option>
@@ -159,10 +164,12 @@ export default function Page() {
                 </Col>
             </Row>
             <Row className={styles.row}>
-                <Col>
+                <Col className={styles.lineChart}>
                     <Line
                         data={chartData}
                         options={{
+                            responsive: true,
+                            maintainAspectRatio: false,
                             scales: {
                                 x: {
                                     type: 'time',

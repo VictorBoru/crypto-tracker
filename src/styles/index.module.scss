@@ -3,6 +3,50 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding: 6rem;
-  min-height: 50vh;
+}
+
+.row {
+  margin-top: 3rem;
+}
+
+.cryptoSearch, .dateSelect {
+  cursor: pointer;
+  border-radius: 15px;
+  border: 1px solid #ddd;
+  appearance: none;
+  padding: 0.5rem 2rem;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 2;
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.cryptoItem {
+  border: 1px solid #ddd;
+  padding: 0.5rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+
+  &:hover {
+    background: #f9f9f9;
+  }
+}
+
+.alertDanger {
+  position: relative;
+  z-index: 2;
+  border-radius: 3px;
+  margin-bottom: 30px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: rgb(235, 129, 129);
+}
+
+.lineChart {
+  height: 300px;
+  width: 80vh;
 }

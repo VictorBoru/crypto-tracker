@@ -1,34 +1,77 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Crypto Tracker - README.md
+Description
+Crypto Tracker is a web application that allows users to search for and visualize cryptocurrency prices over a range of date periods. It uses the Binance API to fetch cryptocurrency data and displays the price of a selected cryptocurrency in a line chart format.
 
-## Getting Started
+Technologies Used
+Frontend:
 
-First, run the development server:
+React: UI Library for building the frontend.
+React Bootstrap: Component library for styling and layout.
+CCXT: Cryptocurrency trading library for fetching market data.
+Chart.js: Charting library for data visualization.
+Backend:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+Express: Node.js web application framework.
+MongoDB: Database for storing logged search terms and selected cryptocurrencies.
+Mongoose: ODM (Object Data Modeling) library for MongoDB and Node.js.
+Body-parser: Middleware to handle request body parsing.
+CORS: Middleware to enable Cross-Origin Resource Sharing.
+Features Implemented
+Cryptocurrency Search: Allows users to search for any cryptocurrency available on Binance.
+Price Visualization: Displays the price trend of a selected cryptocurrency over 1 day, 7 days, or 30 days.
+Logging: Backend logging of search terms and selected cryptocurrencies for analytics.
+Project Setup
+Frontend Setup:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+1.1. Install the required packages:
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+bash
+Copy code
+npm install react react-dom react-bootstrap ccxt chart.js
+1.2. Start the development server:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+bash
+Copy code
+npm start
+1.3. Navigate to http://localhost:3000 in your browser.
 
-## Learn More
+Backend Setup:
 
-To learn more about Next.js, take a look at the following resources:
+2.1. Install the required packages:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+bash
+Copy code
+npm install express body-parser mongoose cors
+2.2. Ensure MongoDB is set up and running.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+2.3. Update MONGO_URI in the server code to point to your MongoDB instance.
 
-## Deploy on Vercel
+2.4. Start the backend server:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+bash
+Copy code
+node server.js
+2.5. The backend server should be running on http://localhost:3002.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Usage
+On the main page, start typing in the search bar to find a cryptocurrency.
+From the dropdown list, select a cryptocurrency.
+Choose the date range for which you want to view the price trend: 1 day, 7 days, or 30 days.
+View the line chart to see the price trend of the selected cryptocurrency for the specified date range.
+Notes
+Ensure you have set up CORS appropriately if deploying to different domains.
+The MONGO_URI in the backend code contains sensitive data. Avoid exposing this and consider using environment variables or other security practices.
+Contributing
+To contribute to this project:
+
+Fork the repository.
+Create a new branch for your feature or bugfix.
+Commit your changes.
+Create a pull request detailing the changes made.
+License
+This project is licensed under the MIT License. See the LICENSE file for details.
+
+Acknowledgements
+Thanks to Binance for providing the cryptocurrency data through their API.
+The open-source community for the valuable tools and libraries.
+We hope you find Crypto Tracker useful for all your cryptocurrency tracking needs!

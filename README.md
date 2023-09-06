@@ -3,24 +3,39 @@ Description
 Crypto Tracker is a web application that allows users to search for and visualize cryptocurrency prices over a range of date periods. It uses the Binance API to fetch cryptocurrency data and displays the price of a selected cryptocurrency in a line chart format.
 
 Technologies Used
+
 Frontend:
 
 React: UI Library for building the frontend.
+
 React Bootstrap: Component library for styling and layout.
+
 CCXT: Cryptocurrency trading library for fetching market data.
+
 Chart.js: Charting library for data visualization.
+
 Backend:
 
 Express: Node.js web application framework.
+
 MongoDB: Database for storing logged search terms and selected cryptocurrencies.
+
 Mongoose: ODM (Object Data Modeling) library for MongoDB and Node.js.
+
 Body-parser: Middleware to handle request body parsing.
+
 CORS: Middleware to enable Cross-Origin Resource Sharing.
+
 Features Implemented
+
 Cryptocurrency Search: Allows users to search for any cryptocurrency available on Binance.
+
 Price Visualization: Displays the price trend of a selected cryptocurrency over 1 day, 7 days, or 30 days.
+
 Logging: Backend logging of search terms and selected cryptocurrencies for analytics.
+
 Project Setup
+
 Frontend Setup:
 
 1.1. Install the required packages:
